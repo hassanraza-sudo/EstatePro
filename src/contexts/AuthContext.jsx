@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -10,9 +10,9 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Simulate checking for a stored user session
+  // Check for stored user session on app load
   useEffect(() => {
-    const storedUser = localStorage.getItem('realEstateUser');
+    const storedUser = localStorage.getItem("realEstateUser");
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setCurrentUser(user);
@@ -22,71 +22,76 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = (email, password) => {
-    // Mock authentication - in a real app, you would call an API
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // Mock user data based on email for different roles
-        if (email.includes('admin')) {
-          const user = { id: 1, name: 'Admin User', email, role: 'admin' };
-          setCurrentUser(user);
-          setUserRole('admin');
-          setIsAuthenticated(true);
-          localStorage.setItem('realEstateUser', JSON.stringify(user));
-          resolve(user);
-        } else if (email.includes('agent')) {
-          const user = { id: 2, name: 'Agent User', email, role: 'agent' };
-          setCurrentUser(user);
-          setUserRole('agent');
-          setIsAuthenticated(true);
-          localStorage.setItem('realEstateUser', JSON.stringify(user));
-          resolve(user);
-        } else if (email.includes('landlord')) {
-          const user = { id: 3, name: 'Landlord User', email, role: 'landlord' };
-          setCurrentUser(user);
-          setUserRole('landlord');
-          setIsAuthenticated(true);
-          localStorage.setItem('realEstateUser', JSON.stringify(user));
-          resolve(user);
-        } else if (email.includes('buyer') || email.includes('tenant')) {
-          const user = { id: 4, name: 'Buyer User', email, role: 'buyer' };
-          setCurrentUser(user);
-          setUserRole('buyer');
-          setIsAuthenticated(true);
-          localStorage.setItem('realEstateUser', JSON.stringify(user));
-          resolve(user);
-        } else {
-          // Default to buyer role for this demo
-          const user = { id: 5, name: 'User', email, role: 'buyer' };
-          setCurrentUser(user);
-          setUserRole('buyer');
-          setIsAuthenticated(true);
-          localStorage.setItem('realEstateUser', JSON.stringify(user));
-          resolve(user);
-        }
-      }, 1000);
-    });
-  };
+  // Login
+  const login = async (email, password) => {
+    try {
+      const res = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-  const register = (name, email, password, role) => {
-    // Mock registration - in a real app, you would call an API
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const user = { id: Date.now(), name, email, role };
-        setCurrentUser(user);
-        setUserRole(role);
+      const data = await res.json();
+      console.log("Login API response:", data);
+
+      if (data && data.email && data.role) {
+        // Save to local storage
+        localStorage.setItem("realEstateUser", JSON.stringify(data));
+
+        // Update auth state
+        setCurrentUser(data);
+        setUserRole(data.role);
         setIsAuthenticated(true);
-        localStorage.setItem('realEstateUser', JSON.stringify(user));
-        resolve(user);
-      }, 1000);
-    });
+
+        return data;
+      } else {
+        throw new Error("Invalid user data returned from server");
+      }
+    } catch (error) {
+      console.error("Login failed:", error.message);
+      throw new Error(error.message || "Login failed. Please try again.");
+    }
   };
 
+  // Register
+  const register = async (name, email, password, role) => {
+    try {
+      const res = await fetch("http://localhost:5000/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password, role }),
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.message || "Failed to register");
+      }
+
+      const user = await res.json();
+
+      // Save to local storage
+      localStorage.setItem("realEstateUser", JSON.stringify(user));
+
+      // Update auth state
+      setCurrentUser(user);
+      setUserRole(user.role);
+      setIsAuthenticated(true);
+
+      return user;
+    } catch (error) {
+      console.error("Registration failed:", error.message);
+      throw error;
+    }
+  };
+
+  // Logout
   const logout = () => {
     setCurrentUser(null);
     setUserRole(null);
     setIsAuthenticated(false);
-    localStorage.removeItem('realEstateUser');
+    localStorage.removeItem("realEstateUser");
   };
 
   const value = {
@@ -96,7 +101,7 @@ export const AuthProvider = ({ children }) => {
     login,
     register,
     logout,
-    loading
+    loading,
   };
 
   return (

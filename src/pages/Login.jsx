@@ -26,11 +26,16 @@ const Login = () => {
     setLoading(true);
 
     try {
-      await login(email, password);
+      const user = await login(email, password); // This returns the user object from AuthContext
+
       toast.success("Logged in successfully!");
-      navigate(from, { replace: true });
+
+      // Navigate to /dashboard — App.jsx will render based on userRole
+      navigate("/dashboard");
     } catch (error) {
-      toast.error("Failed to log in. Please check your credentials.");
+      toast.error(
+        error.message || "Failed to log in. Please check your credentials."
+      );
       console.error(error);
     } finally {
       setLoading(false);
@@ -79,9 +84,6 @@ const Login = () => {
                   placeholder="your@email.com"
                 />
               </div>
-              <p className="mt-2 text-sm text-gray-500">
-                Demo: Use emails containing admin/agent/landlord/buyer
-              </p>
             </div>
 
             <div>
