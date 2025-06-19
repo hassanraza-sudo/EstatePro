@@ -3,7 +3,7 @@ import { Building, Users, ShieldCheck, Globe } from "lucide-react";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-gray-800">
       {/* Hero Section */}
       <section
         className="relative h-80 bg-cover bg-center"
@@ -12,97 +12,93 @@ const About = () => {
             "url(https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)",
         }}
       >
-        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-60" />
         <div className="relative h-full flex items-center justify-center text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white z-10">
+          <h1 className="text-4xl md:text-5xl font-serif text-white z-10">
             About Us
           </h1>
         </div>
       </section>
 
       {/* About Company */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Who We Are</h2>
-          <p className="text-gray-700 text-lg">
-            We are a dedicated team of real estate professionals committed to
-            helping you find the perfect property. Whether you're looking to
-            buy, sell, or rent, we bring experience, technology, and care to
-            every step of your journey.
+      <section className="py-16 bg-slate-300">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-extrabold mb-4">Who We Are</h2>
+          <p className="text-lg text-gray-600 leading-relaxed font-serif">
+            We are a team of dedicated real estate professionals helping you
+            find the perfect property. Whether you're buying, selling, or
+            renting — we bring experience, care, and technology every step of
+            the way.
           </p>
         </div>
       </section>
 
-      {/* Mission / Vision / Values */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition">
-              <ShieldCheck className="mx-auto h-10 w-10 text-blue-600 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Trusted Experts</h3>
-              <p className="text-gray-600">
-                We are known for transparency and professionalism in every
-                transaction.
-              </p>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition">
-              <Globe className="mx-auto h-10 w-10 text-blue-600 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Global Reach</h3>
-              <p className="text-gray-600">
-                We connect buyers and sellers across cities, countries, and
-                borders.
-              </p>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition">
-              <Users className="mx-auto h-10 w-10 text-blue-600 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Customer Focused</h3>
-              <p className="text-gray-600">
-                We listen, advise, and support to ensure a stress-free property
-                experience.
-              </p>
-            </div>
+      {/* Values Section */}
+      <section className="py-16 bg-slate-300">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid gap-8 md:grid-cols-3 text-center">
+            {[
+              {
+                icon: <ShieldCheck className="mx-auto h-10 w-10  text-cyan-800 mb-4" />,
+                title: "Trusted Experts",
+                text: "Known for transparency and professionalism in every transaction.",
+              },
+              {
+                icon: <Globe className="mx-auto h-10 w-10 text-cyan-800 mb-4" />,
+                title: "Global Reach",
+                text: "We connect buyers and sellers across cities, countries, and borders.",
+              },
+              {
+                icon: <Users className="mx-auto h-10 w-10 text-cyan-800 mb-4" />,
+                title: "Customer Focused",
+                text: "We listen, advise, and support to ensure a smooth property experience.",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-gray-100 p-6 rounded-xl shadow-md hover:shadow-xl transition"
+              >
+                {item.icon}
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-gray-600">{item.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Stats / Achievements */}
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">Our Impact</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-4xl font-bold text-blue-600">500+</h3>
-              <p className="text-gray-700 mt-2">Properties Sold</p>
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold text-blue-600">300+</h3>
-              <p className="text-gray-700 mt-2">Happy Clients</p>
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold text-blue-600">15</h3>
-              <p className="text-gray-700 mt-2">Years Experience</p>
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold text-blue-600">24/7</h3>
-              <p className="text-gray-700 mt-2">Support</p>
-            </div>
+      {/* Stats Section */}
+      <section className="py-16 bg-slate-300">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h2 className="text-3xl sm:text-3xl font-bold mb-10">Our Impact</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+            {[
+              { value: "500+", label: "Properties Sold" },
+              { value: "300+", label: "Happy Clients" },
+              { value: "15", label: "Years Experience" },
+              { value: "24/7", label: "Support" },
+            ].map((stat, idx) => (
+              <div key={idx}>
+                <h3 className="text-4xl font-bold text-cyan-800">{stat.value}</h3>
+                <p className="text-gray-700 mt-2">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-blue-600 text-white text-center">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <h2 className="text-3xl font-bold mb-4">
+      {/* CTA Section */}
+      <section className="py-16 bg-cyan-800 text-white text-center">
+        <div className="max-w-2xl mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Ready to Start Your Real Estate Journey?
           </h2>
           <p className="text-lg mb-6">
-            Get in touch with us today and let our experienced team help you
-            take the next step.
+            Let our experienced team guide you toward your dream property.
           </p>
           <a
             href="/contact"
-            className="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold shadow hover:bg-gray-100 transition"
+            className="inline-block bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold shadow hover:bg-gray-100 transition"
           >
             Contact Us
           </a>

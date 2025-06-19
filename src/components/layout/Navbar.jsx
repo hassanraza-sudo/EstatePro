@@ -35,7 +35,7 @@ const Navbar = () => {
   const linkDark = `text-gray-700 hover:text-blue-600`;
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-neutral-300 shadow-md' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-neutral-300 shadow-md' : 'bg-slate-700'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}

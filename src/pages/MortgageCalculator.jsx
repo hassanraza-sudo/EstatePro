@@ -29,14 +29,16 @@ const MortgageCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white py-16 px-4">
-      <div className="max-w-2xl mx-auto bg-gray-50 rounded-lg shadow p-8">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          Mortgage Calculator
+    <div className="min-h-screen bg-gradient-to-br from-gray-400 to-slate-400 mt-5 flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-2xl bg-neutral-400 rounded-2xl shadow-xl p-8 sm:p-10">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+          🏠 Mortgage Calculator
         </h2>
+
         <form onSubmit={calculatePayment} className="space-y-6">
+          {/* Loan Amount */}
           <div>
-            <label className="block text-gray-700 mb-1">
+            <label className="block text-gray-800 font-serif mb-1">
               Loan Amount (PKR)
             </label>
             <input
@@ -44,24 +46,28 @@ const MortgageCalculator = () => {
               value={loanAmount}
               onChange={(e) => setLoanAmount(e.target.value)}
               placeholder="e.g. 1000000"
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
             />
           </div>
+
+          {/* Interest Rate */}
           <div>
-            <label className="block text-gray-700 mb-1">
+            <label className="block text-gray-800 font-serif mb-1">
               Interest Rate (%)
             </label>
             <input
               type="number"
+              step="0.1"
               value={interestRate}
               onChange={(e) => setInterestRate(e.target.value)}
               placeholder="e.g. 7.5"
-              step="0.1"
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
             />
           </div>
+
+          {/* Loan Term */}
           <div>
-            <label className="block text-gray-700 mb-1">
+            <label className="block text-gray-800 font-serif mb-1">
               Loan Term (Years)
             </label>
             <input
@@ -69,21 +75,27 @@ const MortgageCalculator = () => {
               value={loanTerm}
               onChange={(e) => setLoanTerm(e.target.value)}
               placeholder="e.g. 20"
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-          >
-            Calculate
-          </button>
+
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="w-80 bg-zinc-600 hover:bg-gray-700 text-white font-serif py-2.5 rounded-lg transition duration-200"
+            >
+              Calculate Payment
+            </button>
+          </div>
         </form>
 
+        {/* Result */}
         {monthlyPayment && (
-          <div className="mt-6 p-4 bg-green-100 text-green-800 rounded text-center">
-            <p className="text-lg font-semibold">Estimated Monthly Payment:</p>
-            <p className="text-2xl font-bold">PKR {monthlyPayment}</p>
+          <div className="mt-8 text-center bg-slate-300 border border-zinc-600 text-slate-800 p-6 rounded-xl shadow-sm transition-all duration-300">
+            <p className="text-lg font-serif mb-2">
+              Estimated Monthly Payment
+            </p>
+            <p className="text-3xl font-semibold">PKR {monthlyPayment}</p>
           </div>
         )}
       </div>

@@ -51,12 +51,12 @@ const SearchFilters = ({ onSearch, initialFilters = {} }) => {
   ];
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md">
+    <div className="bg-slate-400 p-4 rounded-lg shadow-md">
       <form onSubmit={handleSubmit}>
         {/* Main search bar */}
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
+            <Search className="h-5 w-5 text-gray-800" />
           </div>
           <input
             type="text"
@@ -252,14 +252,14 @@ const SearchFilters = ({ onSearch, initialFilters = {} }) => {
             onClick={handleReset}
             className="btn btn-secondary"
           >
-            <X className="h-4 w-4 mr-1" />
+            <X className="h-4 w-4 " />
             Reset
           </button>
           <button
             type="submit"
             className="btn btn-primary"
           >
-            <Search className="h-4 w-4 mr-1" />
+            <Search className="h-4 w-4 " />
             Search Properties
           </button>
         </div>

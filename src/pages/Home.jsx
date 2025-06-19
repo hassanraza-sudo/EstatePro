@@ -73,14 +73,14 @@ const Home = () => {
           className="mt-16 bg-neutral-600 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-10 grid gap-6 md:grid-cols-4 items-center"
         >
           <div className="relative">
-            <MapPin className="absolute top-3.5 left-3 text-gray-500 w-5 h-5" />
+            <MapPin className="absolute top-3.5 left-3 text-gray-400 w-5 h-5" />
             <input
               type="text"
               name="location"
               value={searchParams.location}
               onChange={handleChange}
               placeholder="Enter City, ZIP or Address"
-              className="w-full pl-10 pr-4 py-3 rounded-lg border bg-blue-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-100 text-sm md:text-base"
+              className="w-full pl-10 pr-4 py-3 rounded-lg border  font-serif bg-blue-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-100 text-sm md:text-base"
             />
           </div>
 
@@ -108,7 +108,7 @@ const Home = () => {
               name="priceRange"
               value={searchParams.priceRange}
               onChange={handleChange}
-              className="w-full pl-10 pr-4 py-3 rounded-lg border bg-blue-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-100 text-sm md:text-base"
+              className="w-full pl-10 pr-4 py-3 rounded-lg border  font-serif bg-blue-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-100 text-sm md:text-base"
             >
               <option value="">Any Price</option>
               <option value="0-100000">$0 - $100,000</option>
@@ -123,7 +123,7 @@ const Home = () => {
             type="submit"
             className="w-full md:col-span-1 py-3 px-6 bg-slate-500 hover:bg-slate-700 text-white font-semibold rounded-lg flex items-center justify-center transition-all duration-200"
           >
-            <Search className="h-5 w-5 mr-2" />
+            <Search className="h-5 w-5 mr-2 " />
             Search
           </button>
         </form>
@@ -132,96 +132,102 @@ const Home = () => {
       </section>
 
       {/* Featured Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold">Featured Properties</h2>
-            <Link
-              to="/properties"
-              className="flex items-center text-blue-600 hover:text-blue-700 font-medium"
-            >
-              View All <ArrowRight className="h-4 w-4 ml-1" />
-            </Link>
-          </div>
-          {loading ? (
-            <div className="flex justify-center py-20">
-              <div className="h-12 w-12 border-4 border-blue-600 border-b-transparent rounded-full animate-spin"></div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {featuredProperties.map((property) => (
-                <PropertyCard key={property.id} property={property} />
-              ))}
-            </div>
-          )}
+    <section className="py-20 bg-gray-100">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
+          <h2 className="text-4xl font-bold text-gray-800">Featured Properties</h2>
+          <Link
+            to="/properties"
+            className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors"
+          >
+            View All <ArrowRight className="h-5 w-5 ml-2" />
+          </Link>
         </div>
-      </section>
+        {loading ? (
+          <div className="flex justify-center items-center h-48">
+            <div className="h-12 w-12 border-4 border-blue-600 border-b-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+            {featuredProperties.map((property) => (
+              <PropertyCard key={property.id} property={property} />
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
 
       {/* Property Types */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-12">Browse by Property Type</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[
-              { name: 'Houses', icon: HomeIcon, count: 245, path: '/properties?type=house' },
-              { name: 'Apartments', icon: Building, count: 187, path: '/properties?type=apartment' },
-              { name: 'Commercial', icon: Warehouse, count: 102, path: '/properties?type=commercial' },
-              { name: 'Luxury', icon: Star, count: 53, path: '/properties?type=luxury' },
-            ].map((type, index) => (
-              <Link
-                key={index}
-                to={type.path}
-                className="p-6 rounded-lg shadow hover:shadow-md transition bg-gray-50 hover:bg-gray-100 flex flex-col items-center"
-              >
-                <type.icon className="h-10 w-10 text-blue-600 mb-4" />
-                <h3 className="text-lg font-semibold mb-1">{type.name}</h3>
-                <p className="text-blue-600 font-medium">{type.count} Properties</p>
-              </Link>
-            ))}
-          </div>
+    <section className="py-20 bg-gray-100">
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="text-4xl font-bold text-gray-800 mb-12">Browse by Property Type</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 ">
+          {[
+            { name: 'Houses', icon: HomeIcon, count: 245, path: '/properties?type=house' },
+            { name: 'Apartments', icon: Building, count: 187, path: '/properties?type=apartment' },
+            { name: 'Commercial', icon: Warehouse, count: 102, path: '/properties?type=commercial' },
+            { name: 'Luxury', icon: Star, count: 53, path: '/properties?type=luxury' },
+          ].map((type, index) => (
+            <Link
+              key={index}
+              to={type.path}
+              className="bg-gray-300 hover:bg-gray-400 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 flex flex-col items-center text-center"
+            >
+              <type.icon className="h-12 w-12 text-blue-600 mb-4" />
+              <h3 className="text-xl font-semibold text-gray-800">{type.name}</h3>
+              <p className="text-blue-600 font-medium mt-1">{type.count} Properties</p>
+            </Link>
+          ))}
         </div>
-      </section>
-
+      </div>
+    </section>
+ 
       {/* How It Works */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-12">How It Works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { step: 1, title: 'Find Properties', description: 'Browse listings to discover the perfect place.' },
-              { step: 2, title: 'Contact Agent', description: 'Get in touch with top-rated agents.' },
-              { step: 3, title: 'Close the Deal', description: 'Secure your property with confidence.' },
-            ].map((item, idx) => (
-              <div key={idx} className="p-6 bg-white rounded-lg shadow flex flex-col items-center">
-                <div className="h-16 w-16 bg-blue-100 text-blue-600 flex items-center justify-center rounded-full text-xl font-bold mb-4">
-                  {item.step}
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
+    <section className="py-20 bg-gray-100">
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="text-4xl font-bold text-gray-800 mb-12">How It Works</h2>
+        <div className="grid md:grid-cols-3 gap-10">
+          {[
+            { step: 1, title: 'Find Properties', description: 'Browse listings to discover the perfect place.' },
+            { step: 2, title: 'Contact Agent', description: 'Get in touch with top-rated agents.' },
+            { step: 3, title: 'Close the Deal', description: 'Secure your property with confidence.' },
+          ].map((item, idx) => (
+            <div key={idx} className="p-8 bg-slate-300 rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center">
+              <div className="h-16 w-16 bg-blue-200 text-blue-600 flex items-center justify-center rounded-full text-xl font-bold mb-4">
+                {item.step}
               </div>
-            ))}
-          </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{item.title}</h3>
+              <p className="text-gray-600">{item.description}</p>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto">
-            Join thousands of happy customers. Start your journey to your dream property today.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/properties" className="bg-white text-blue-600 font-medium py-2 px-6 rounded-md hover:bg-gray-100">
-              Browse Properties
-            </Link>
-            <Link to="/contact" className="border border-white py-2 px-6 rounded-md hover:bg-white hover:text-blue-600">
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
+  {/* CTA Section */}
+  <section className="py-24 bg-zinc-400 text-white text-center">
+    <div className="container mx-auto px-4">
+      <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
+      <p className="text-lg max-w-2xl mx-auto mb-10">
+        Join thousands of happy customers. Start your journey to your dream property today.
+      </p>
+      <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <Link
+          to="/properties"
+          className="bg-white text-blue-600 font-semibold py-3 px-6 rounded-md hover:bg-gray-100 transition"
+        >
+          Browse Properties
+        </Link>
+        <Link
+          to="/contact"
+          className="border border-white py-3 px-6 rounded-md hover:bg-white hover:text-blue-600 transition"
+        >
+          Contact Us
+        </Link>
+      </div>
     </div>
+  </section>
+</div>
   );
 };
 
