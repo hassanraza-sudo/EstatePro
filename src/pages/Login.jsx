@@ -10,7 +10,7 @@ import {
   EyeOff,
   Github,
   ShieldCheck,
-  CircleUser
+  CircleUser,
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import toast from "react-hot-toast";
@@ -49,8 +49,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-slate-300 to-gray-400 flex items-center mt-5 justify-center px-4">
-      <div className="w-full max-w-md bg-gray-400 rounded-xl shadow-lg p-8">
+    <div className="min-h-screen bg-white from-slate-300 to-gray-400 flex items-center mt-5 justify-center px-4">
+      <div className="w-full max-w-md bg-gray-200 rounded-xl shadow-lg p-8">
         <div className="flex justify-center mb-6">
           <ShieldCheck className="h-12 w-12 text-blue-600" />
         </div>
@@ -58,7 +58,7 @@ const Login = () => {
           Login to your account
         </h2>
         <p className="text-center text-sm text-black mt-2">
-          Or{' '}
+          Or{" "}
           <Link to="/register" className="text-blue-800 hover:underline">
             create a new account
           </Link>
@@ -66,7 +66,10 @@ const Login = () => {
 
         <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-black">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-black"
+            >
               Email Address
             </label>
             <div className="mt-1 relative">
@@ -86,7 +89,10 @@ const Login = () => {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-black">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-black"
+            >
               Password
             </label>
             <div className="mt-1 relative">
@@ -108,7 +114,11 @@ const Login = () => {
                   onClick={() => setShowPassword(!showPassword)}
                   className="text-gray-400 hover:text-gray-600"
                 >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
                 </button>
               </span>
             </div>
@@ -176,7 +186,11 @@ const Login = () => {
               type="button"
               className="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50"
             >
-              <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+              <svg
+                className="h-5 w-5 mr-2"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                   fill="#4285F4"
