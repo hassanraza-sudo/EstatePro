@@ -26,19 +26,23 @@ const Contact = () => {
           <div className="grid gap-8 md:grid-cols-3 text-center">
             {[
               {
-                icon: <Phone className="mx-auto text-blue-700 mb-5" size={32} />,
+                icon: (
+                  <Phone className="mx-auto text-blue-700 mb-5" size={32} />
+                ),
                 title: "Phone",
-                value: "+92 301 2984495",
+                value: "+923012345678",
               },
               {
                 icon: <Mail className="mx-auto text-blue-700 mb-5" size={32} />,
                 title: "Email",
-                value: "bps345@gmail.com",
+                value: "info@estaepro.com",
               },
               {
-                icon: <MapPin className="mx-auto text-blue-700 mb-5" size={32} />,
+                icon: (
+                  <MapPin className="mx-auto text-blue-700 mb-5" size={32} />
+                ),
                 title: "Location",
-                value: "Beacon Public High School, Bhiria City, Sindh",
+                value: "Sindh, Pakistan",
               },
             ].map((item, idx) => (
               <div
