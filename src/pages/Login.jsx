@@ -4,14 +4,12 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Mail,
   Lock,
-  LogIn,
-  Building2,
   Eye,
   EyeOff,
   Github,
-  ShieldCheck,
-  CircleUser,
 } from "lucide-react";
+import { RiShieldUserLine } from "react-icons/ri";
+import { BiSolidLogInCircle } from "react-icons/bi";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import toast from "react-hot-toast";
 
@@ -36,7 +34,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const user = await login(email, password);
+      await login(email, password);
       toast.success("Logged in successfully!");
       navigate(from);
     } catch (error) {
@@ -49,17 +47,17 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white from-slate-300 to-gray-400 flex items-center mt-5 justify-center px-4">
-      <div className="w-full max-w-md bg-gray-200 rounded-xl shadow-lg p-8">
-        <div className="flex justify-center mb-6">
-          <ShieldCheck className="h-12 w-12 text-blue-600" />
+    <div className="min-h-screen bg-gradient-to-r from-slate-300 to-sky-200 flex items-center justify-center px-4 py-10 sm:py-16">
+      <div className="w-full max-w-md bg-slate-300 rounded-2xl shadow-xl p-8 sm:p-10">
+        <div className="flex justify-center mb-5 min-w-24">
+          <RiShieldUserLine  className="h-12 w-12 text-sky-900 min-h-20" />
         </div>
-        <h2 className="text-2xl font-bold text-center text-black">
-          Login to your account
+        <h2 className="text-3xl font-extrabold font-serif text-center text-gray-800">
+          Login to account
         </h2>
-        <p className="text-center text-sm text-black mt-2">
+        <p className="mt-2 text-sm text-center text-gray-600">
           Or{" "}
-          <Link to="/register" className="text-blue-800 hover:underline">
+          <Link to="/register" className="text-blue-600 hover:underline">
             create a new account
           </Link>
         </p>
@@ -68,7 +66,7 @@ const Login = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-black"
+              className="block text-sm font-medium text-gray-700"
             >
               Email Address
             </label>
@@ -82,7 +80,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full pl-10 pr-3 py-2 border bg-slate-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-x-gray-500 transition"
                 placeholder="your@email.com"
               />
             </div>
@@ -91,7 +89,7 @@ const Login = () => {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-black"
+              className="block text-sm font-medium text-gray-700"
             >
               Password
             </label>
@@ -105,14 +103,15 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full pl-10 pr-10 py-2 border bg-slate-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-x-gray-500 transition"
                 placeholder="••••••••"
               />
               <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="text-gray-500 hover:text-gray-700 focus:outline-none"
+                  aria-label="Toggle password visibility"
                 >
                   {showPassword ? (
                     <EyeOff className="h-5 w-5" />
@@ -125,14 +124,14 @@ const Login = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <label className="flex items-center text-sm text-black">
+            <label className="flex items-center text-sm text-gray-600">
               <input
                 type="checkbox"
                 className="form-checkbox text-blue-600 border-gray-300 rounded"
               />
               <span className="ml-2">Remember me</span>
             </label>
-            <Link to="#" className="text-sm text-blue-800 hover:underline">
+            <Link to="#" className="text-sm text-blue-600 hover:underline">
               Forgot password?
             </Link>
           </div>
@@ -140,7 +139,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center px-4 py-2 bg-sky-800 text-white font-semibold rounded-md hover:bg-sky-950 transition"
+            className="w-full flex items-center justify-center px-4 py-2 bg-sky-800 text-white font-semibold rounded-md hover:bg-sky-900 hover:scale-[1.02] transition-all duration-150 disabled:opacity-50"
           >
             {loading ? (
               <svg
@@ -165,7 +164,7 @@ const Login = () => {
               </svg>
             ) : (
               <>
-                <LogIn className="h-5 w-5 mr-2" /> Sign In
+                <BiSolidLogInCircle  className="h-5 w-5 mr-2" /> Login
               </>
             )}
           </button>
@@ -177,17 +176,19 @@ const Login = () => {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-black">Or continue with</span>
+              <span className=" px-2 text-gray-600">
+                Or continue with
+              </span>
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-3">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-white">
             <button
               type="button"
-              className="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50"
+              className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-xl bg-sky-800 shadow-sm hover:shadow-md transition"
             >
               <svg
-                className="h-5 w-5 mr-2"
+                className="h-5 w-5"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -213,9 +214,9 @@ const Login = () => {
 
             <button
               type="button"
-              className="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50"
+              className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-xl bg-sky-800 shadow-sm hover:shadow-md transition"
             >
-              <Github className="h-5 w-5 mr-2" /> GitHub
+              <Github className="h-5 w-5" /> GitHub
             </button>
           </div>
         </div>

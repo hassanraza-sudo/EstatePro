@@ -21,6 +21,9 @@ import AddProperty from "./pages/dashboard/AddProperty.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import MortgageCalculator from "./pages/MortgageCalculator.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import TermsOfService from "./pages/TermsOfServices.jsx";
+import Sitemap from "./pages/Sitemap.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 // Protected Route Component
@@ -43,6 +46,10 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="mortgage-calculator" element={<MortgageCalculator />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-of-service" element={<TermsOfService />} />
+          <Route path="sitemap" element={<Sitemap />} />
+
         </Route>
 
         {/* Dashboard Routes */}
