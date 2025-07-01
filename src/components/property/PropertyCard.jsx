@@ -21,7 +21,7 @@ const PropertyCard = ({ property, saved = false, onSaveToggle }) => {
     <div className="card group hover:shadow-lg">
       <div className="relative overflow-hidden h-48 sm:h-64">
         <img
-          src={property.images?.[0] || "https://via.placeholder.com/400"}
+          src={property.images?.[0] || "/fallback.jpg"}
           alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />

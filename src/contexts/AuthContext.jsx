@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // Login
+  // ✅ Updated Login function
   const login = async (email, password) => {
     try {
       const res = await fetch("http://localhost:5000/api/login", {
@@ -34,16 +34,22 @@ export const AuthProvider = ({ children }) => {
       const data = await res.json();
       console.log("Login API response:", data);
 
-      if (data && data.email && data.role) {
-        // Save to local storage
-        localStorage.setItem("realEstateUser", JSON.stringify(data));
+      if (data && data.token && data.user) {
+        const userWithToken = {
+          ...data.user,
+          token: data.token,
+        };
 
-        // Update auth state
-        setCurrentUser(data);
-        setUserRole(data.role);
+        // ✅ Save token and user
+        localStorage.setItem("realEstateUser", JSON.stringify(userWithToken));
+        localStorage.setItem("token", data.token);
+
+        // ✅ Update auth state
+        setCurrentUser(userWithToken);
+        setUserRole(data.user.role);
         setIsAuthenticated(true);
 
-        return data;
+        return userWithToken;
       } else {
         throw new Error("Invalid user data returned from server");
       }
@@ -53,7 +59,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Register
   const register = async (name, email, password, role) => {
     try {
       const res = await fetch("http://localhost:5000/api/users/register", {
@@ -71,10 +76,7 @@ export const AuthProvider = ({ children }) => {
 
       const user = await res.json();
 
-      // Save to local storage
       localStorage.setItem("realEstateUser", JSON.stringify(user));
-
-      // Update auth state
       setCurrentUser(user);
       setUserRole(user.role);
       setIsAuthenticated(true);
@@ -86,12 +88,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Logout
   const logout = () => {
     setCurrentUser(null);
     setUserRole(null);
     setIsAuthenticated(false);
     localStorage.removeItem("realEstateUser");
+    localStorage.removeItem("token"); // ✅ Clear token too
   };
 
   const value = {

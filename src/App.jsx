@@ -21,6 +21,9 @@ import AddProperty from "./pages/dashboard/AddProperty.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import MortgageCalculator from "./pages/MortgageCalculator.jsx";
+import Message from "./pages/dashboard/Message";
+import Profile from "./pages/dashboard/Profile.jsx";
+import MyProperties from "./pages/dashboard/MyProperties.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 // Protected Route Component
@@ -43,6 +46,8 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="mortgage-calculator" element={<MortgageCalculator />} />
+          <Route path="/dashboard/messages" element={<Message />} />
+          <Route path="/dashboard/profile" element={<Profile />} />
         </Route>
 
         {/* Dashboard Routes */}
@@ -54,6 +59,15 @@ function App() {
             </ProtectedRoute>
           }
         >
+          <Route
+            path="/dashboard/my-properties"
+            element={
+              <ProtectedRoute allowedRoles={["landlord", "agent", "admin"]}>
+                <MyProperties />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             index
             element={
