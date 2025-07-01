@@ -49,49 +49,48 @@ const Home = () => {
   return (
     <div className="min-h-screen text-gray-800">
       {/* Hero Section */}
-      <section className="relative h-[90vh] md:h-[80vh] flex items-center justify-center">
+      <section className="relative h-[90vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg"
             alt="hero"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center brightness-75"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-slate-300 mt-5 leading-tight drop-shadow-2xl tracking-tight">
-            Find Your <span className="text-blue-300">Dream Property</span>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-xl leading-tight">
+            Discover Your <span className="text-blue-400">Dream Home</span>
           </h1>
-          <p className="text-lg md:text-xl font-serif text-slate-300 mt-5 max-w-xl mx-auto drop-shadow-md">
-            Explore top listings with expert guidance and seamless search
-            experience.
+          <p className="text-lg md:text-xl text-slate-100 mt-5">
+            Browse top listings with ease and confidence.
           </p>
 
           {/* Search Form */}
           <form
             onSubmit={handleSubmit}
-            className="mt-16 bg-neutral-600 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-10 grid gap-6 md:grid-cols-4 items-center"
+            className="mt-12 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-lg p-6 md:p-10 grid gap-4 md:grid-cols-4 items-center"
           >
             <div className="relative">
-              <MapPin className="absolute top-3.5 left-3 text-gray-400 w-5 h-5" />
+              <MapPin className="absolute top-3.5 left-3 text-white/70 w-5 h-5" />
               <input
                 type="text"
                 name="location"
                 value={searchParams.location}
                 onChange={handleChange}
-                placeholder="Enter City, ZIP or Address"
-                className="w-full pl-10 pr-4 py-3 rounded-lg border  font-serif bg-blue-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-100 text-sm md:text-base"
+                placeholder="City, ZIP, or Address"
+                className="w-full pl-10 pr-4 py-3 rounded-lg text-sm bg-white/80 text-gray-800 placeholder:text-gray-500 focus:ring-2 ring-blue-300"
               />
             </div>
 
             <div className="relative">
-              <Building className="absolute top-3.5 left-3 text-gray-400 w-5 h-5" />
+              <Building className="absolute top-3.5 left-3 text-white/70 w-5 h-5" />
               <select
                 name="propertyType"
                 value={searchParams.propertyType}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 rounded-lg border font-serif bg-blue-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-100 text-sm md:text-base"
+                className="w-full pl-10 pr-4 py-3 rounded-lg text-sm bg-white/80 text-gray-800 focus:ring-2 ring-blue-300"
               >
                 <option value="">Any Type</option>
                 <option value="house">House</option>
@@ -104,12 +103,12 @@ const Home = () => {
             </div>
 
             <div className="relative">
-              <DollarSign className="absolute top-3.5 left-3 text-gray-400 w-5 h-5" />
+              <DollarSign className="absolute top-3.5 left-3 text-white/70 w-5 h-5" />
               <select
                 name="priceRange"
                 value={searchParams.priceRange}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 rounded-lg border  font-serif bg-blue-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-100 text-sm md:text-base"
+                className="w-full pl-10 pr-4 py-3 rounded-lg text-sm bg-white/80 text-gray-800 focus:ring-2 ring-blue-300"
               >
                 <option value="">Any Price</option>
                 <option value="0-100000">$0 - $100,000</option>
@@ -122,35 +121,34 @@ const Home = () => {
 
             <button
               type="submit"
-              className="w-full md:col-span-1 py-3 px-6 bg-slate-500 hover:bg-slate-700 text-white font-semibold rounded-lg flex items-center justify-center transition-all duration-200"
+              className="w-full py-3 px-6 bg-sky-700 hover:bg-sky-900 text-white font-semibold rounded-lg flex items-center justify-center transition-all"
             >
-              <Search className="h-5 w-5 mr-2 " />
+              <Search className="h-5 w-5 mr-2" />
               Search
             </button>
           </form>
         </div>
       </section>
 
-      {/* Featured Section */}
-      <section className="py-20 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
-            <h2 className="text-4xl font-bold text-gray-800">
-              Featured Properties
-            </h2>
+      {/* Featured Properties Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-10">
+            <h2 className="text-4xl font-bold text-gray-800">Featured Properties</h2>
             <Link
               to="/properties"
-              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors"
+              className="text-blue-600 hover:underline flex items-center"
             >
-              View All <ArrowRight className="h-5 w-5 ml-2" />
+              View All <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>
+
           {loading ? (
-            <div className="flex justify-center items-center h-48">
-              <div className="h-12 w-12 border-4 border-blue-600 border-b-transparent rounded-full animate-spin"></div>
+            <div className="flex justify-center items-center h-40">
+              <div className="h-12 w-12 border-4 border-blue-600 border-b-transparent rounded-full animate-spin" />
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProperties.map((property) => (
                 <PropertyCard key={property.id} property={property} />
               ))}
@@ -165,37 +163,16 @@ const Home = () => {
           <h2 className="text-4xl font-bold text-gray-800 mb-12">
             Browse by Property Type
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 ">
-            {[
-              {
-                name: "Houses",
-                icon: HomeIcon,
-                count: 5,
-                path: "/properties?type=house",
-              },
-              {
-                name: "Apartments",
-                icon: Building,
-                count: 4,
-                path: "/properties?type=apartment",
-              },
-              {
-                name: "Commercial",
-                icon: Warehouse,
-                count: 3,
-                path: "/properties?type=commercial",
-              },
-              {
-                name: "Luxury",
-                icon: Star,
-                count: 3,
-                path: "/properties?type=luxury",
-              },
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {[{ name: "Houses", icon: HomeIcon, count: 5, path: "/properties?type=house" },
+              { name: "Apartments", icon: Building, count: 4, path: "/properties?type=apartment" },
+              { name: "Commercial", icon: Warehouse, count: 3, path: "/properties?type=commercial" },
+              { name: "Luxury", icon: Star, count: 3, path: "/properties?type=luxury" },
             ].map((type, index) => (
               <Link
                 key={index}
                 to={type.path}
-                className="bg-gray-300 hover:bg-gray-400 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 flex flex-col items-center text-center"
+                className="bg-zinc-200 hover:bg-zinc-300 p-6 rounded-xl shadow hover:shadow-md transition flex flex-col items-center"
               >
                 <type.icon className="h-12 w-12 text-blue-600 mb-4" />
                 <h3 className="text-xl font-semibold text-gray-800">
@@ -211,34 +188,19 @@ const Home = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-gray-100">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-12">
-            How It Works
-          </h2>
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-12 text-gray-800">How It Works</h2>
           <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                step: 1,
-                title: "Find Properties",
-                description: "Browse listings to discover the perfect place.",
-              },
-              {
-                step: 2,
-                title: "Contact Agent",
-                description: "Get in touch with top-rated agents.",
-              },
-              {
-                step: 3,
-                title: "Close the Deal",
-                description: "Secure your property with confidence.",
-              },
+            {[{ step: 1, title: "Find Properties", description: "Browse listings to discover the perfect place." },
+              { step: 2, title: "Contact Agent", description: "Get in touch with top-rated agents." },
+              { step: 3, title: "Close the Deal", description: "Secure your property with confidence." },
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="p-8 bg-slate-300 rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center"
+                className="bg-gray-100 p-8 rounded-2xl shadow hover:shadow-md transition"
               >
-                <div className="h-16 w-16 bg-blue-200 text-blue-600 flex items-center justify-center rounded-full text-xl font-bold mb-4">
+                <div className="h-16 w-16 flex items-center justify-center bg-blue-100 text-blue-600 text-xl font-bold rounded-full mb-4 mx-auto">
                   {item.step}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -252,23 +214,22 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-zinc-400 text-white text-center">
+      <section className="py-24 bg-gradient-to-br from-sky-500 to-zinc-500 text-white text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-lg max-w-2xl mx-auto mb-10">
-            Join thousands of happy customers. Start your journey to your dream
-            property today.
+            Join thousands of happy customers. Start your journey to your dream property today.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               to="/properties"
-              className="bg-white text-blue-600 font-semibold py-3 px-6 rounded-md hover:bg-gray-100 transition"
+              className="bg-white text-blue-700 font-semibold py-3 px-6 rounded-lg shadow hover:bg-gray-100 transition"
             >
               Browse Properties
             </Link>
             <Link
               to="/contact"
-              className="border border-white py-3 px-6 rounded-md hover:bg-white hover:text-blue-600 transition"
+              className="border border-white py-3 px-6 rounded-lg hover:bg-white hover:text-blue-700 transition"
             >
               Contact Us
             </Link>

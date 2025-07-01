@@ -119,7 +119,7 @@ const Navbar = () => {
                   to="/dashboard"
                   className={`ml-4 ${linkBaseStyle} ${
                     isScrolled
-                      ? "bg-blue-300 text-white"
+                      ? "border border-gray-300 text-gray-700"
                       : "bg-white text-blue-300"
                   } hover:opacity-90`}
                 >

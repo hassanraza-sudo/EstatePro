@@ -24,6 +24,10 @@ import MortgageCalculator from "./pages/MortgageCalculator.jsx";
 import Message from "./pages/dashboard/Message";
 import Profile from "./pages/dashboard/Profile.jsx";
 import MyProperties from "./pages/dashboard/MyProperties.jsx";
+import Settings from "./pages/dashboard/Settings.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import TermsOfService from "./pages/TermsOfServices.jsx";
+import Sitemap from "./pages/Sitemap.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 // Protected Route Component
@@ -48,6 +52,7 @@ function App() {
           <Route path="mortgage-calculator" element={<MortgageCalculator />} />
           <Route path="/dashboard/messages" element={<Message />} />
           <Route path="/dashboard/profile" element={<Profile />} />
+          <Route path="/dashboard/settings" element={<Settings />} />
         </Route>
 
         {/* Dashboard Routes */}
