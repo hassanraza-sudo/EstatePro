@@ -53,6 +53,9 @@ function App() {
           <Route path="/dashboard/messages" element={<Message />} />
           <Route path="/dashboard/profile" element={<Profile />} />
           <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/sitemap" element={<Sitemap />} />
         </Route>
 
         {/* Dashboard Routes */}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, CalendarDays, User2 } from "lucide-react"; // Optional: Add icons using lucide-react
+import { Mail, CalendarDays, User2 } from "lucide-react";
 
 const Message = () => {
   const dummyMessages = [
@@ -44,41 +44,57 @@ const Message = () => {
   ];
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800">📨 Messages</h2>
+    <section className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-fuchsia-50 py-12 px-4 sm:px-6 lg:px-8">
+      
+      <div className="max-w-6xl mx-auto mb-10 flex items-center gap-3">
+        <Mail className="w-8 h-8 text-indigo-600" />
+        <h2 className="text-4xl font-extrabold text-gray-800 tracking-tight">
+          Messages
+        </h2>
+      </div>
 
-      <div className="grid gap-6">
-        {dummyMessages.map((msg) => (
-          <div
+      <div className="max-w-6xl mx-auto grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
+        {dummyMessages.map((msg, idx) => (
+          <article
             key={msg.id}
-            className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition p-6"
+            className="group relative bg-white rounded-2xl shadow-lg ring-1 ring-gray-100 hover:ring-indigo-300 overflow-hidden transition-all duration-300"
           >
-            <div className="flex items-start justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl font-semibold">
-                  {msg.sender.charAt(0)}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800">
-                    {msg.subject}
-                  </h3>
-                  <div className="flex items-center gap-2 mt-1 text-sm text-gray-500">
-                    <User2 className="w-4 h-4" />
-                    <span>{msg.sender}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="text-sm text-gray-400 flex items-center gap-1">
-                <CalendarDays className="w-4 h-4" />
-                <span>{msg.date}</span>
-              </div>
-            </div>
+      
+            <span
+              className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-indigo-500 to-fuchsia-500 group-hover:w-2 transition-all duration-300"
+              aria-hidden="true"
+            />
 
-            <p className="mt-4 text-gray-700 leading-relaxed">{msg.content}</p>
-          </div>
+            <div className="relative p-6">
+              <h3 className="text-xl font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors">
+                {msg.subject}
+              </h3>
+
+              <div className="mt-2 flex items-center gap-2 text-sm text-gray-500">
+                <User2 className="w-4 h-4" />
+                <span>{msg.sender}</span>
+              </div>
+
+              <time
+                dateTime={msg.date}
+                className="mt-4 inline-flex items-center gap-1 rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-600"
+              >
+                <CalendarDays className="w-3 h-3" />
+                {new Date(msg.date).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </time>
+
+              <p className="mt-4 text-gray-700 leading-relaxed line-clamp-4">
+                {msg.content}
+              </p>
+            </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
